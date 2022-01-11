@@ -1,0 +1,16 @@
+[Unit]
+Description=Nginx Server on /nginx
+Documentation=man:nginx(8)
+After=network.target
+
+[Service]
+Type=forking
+PIDFile=/nginx/logs/nginx.pid
+ExecStartPre=/nginx/sbin/nginx -t -q -g 'daemon on; master_process on;'
+ExecStart=/nginx/sbin/nginx -g 'daemon on; master_process on;'
+ExecReload=/nginx/sbin/nginx -s reload -g 'daemon on; master_process on;'
+ExecReopen=/nginx/sbin/nginx -s reopen -g 'daemon on; master_process on;'
+ExecStop=/nginx/sbin/nginx -s stop -g 'daemon on; master_process on;'
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,43 @@
+1. Descargar el tar.gz
+
+wget http://nginx.org/download/nginx-1.21.5.tar.gz
+
+2. Descomprimir el tar.gz
+
+tar -zxvf nginx-1.21.5.tar.gz
+
+3. Instalar las dependencias
+
+sudo apt install make
+sudo apt install libxml2-utils
+sudo apt-get install xsltproc
+sudo apt update
+sudo apt-get install devscripts
+sudo apt-get install quilt
+sudo apt upgrade debhelper
+sudo apt upgrade libssl-dev
+sudo apt upgrade libpcre3-dev
+sudo apt upgrade zlib1g-dev
+sudo apt upgrade libgeoip-dev
+sudo apt upgrade libgd-dev
+sudo apt update
+
+4. Crear un script de instalación install.sh (cd nginx-1.21.5)
+
+#!/bin/bash
+
+sudo ./configure \
+  --prefix=/nginx \
+  --with-http_mp4_module \
+  --with-http_flv_module
+
+sudo make
+
+sudo make install
+
+echo "Se ha instalado nginx correctamente /nginx"
+
+5. Ejecutamos el script de instalación install.sh
+
+sudo sh install.sh
+

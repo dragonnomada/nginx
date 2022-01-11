@@ -1,0 +1,45 @@
+# Trabajo 1
+
+1. Definir un servidor virtual en el puerto 80
+
+* Bajo el archivo sites/company.conf
+
+--- sites/company.conf
+
+server {
+  
+  listen 80 default_server;
+  server_name company.com;
+
+  location / {
+    root /home/ubuntu/www/company;
+  }
+
+}
+
+--- /nginx/conf/nginx.conf
+...
+http {
+  ...
+  include sites/*.conf;
+}
+
+2. Habilitar el hosts simulado company.com
+
+--- /etc/hosts
+127.0.0.1 locahost company.com
+
+3. Recargar la configuración nginx -s reload
+
+> Comprobar la configuración: sudo /nginx/sbin/nginx -t
+
+> Encender: sudo /nginx/sbin/nginx
+> Detener: 
+	sudo killall nginx
+	sudo /nginx/sbin/nginx -s quit
+> Recargar: /nginx/sbin/nginx -s reload
+
+3. Comprobar el funcionamiento
+
+> curl localhost -> página del servidor por defecto
+> curl company.com -> página del servidor virtual

@@ -1,0 +1,108 @@
+Módulo 1. Descarga e instalación de Nginx
+Instalación a través de gestores de paquetes | Compilando desde la fuente | Descargando Nginx | Configurar opciones | Control del servicio Nginx | Agregar Nginx como un servicio del sistema | Nginx Plus
+
+# http://nginx.org/en/docs/windows.html
+
+--- Install Nginx on Windows
+
+start ngnix
+
+# http://hg.nginx.org/nginx/
+
+--- Install Nginx from Sources
+
+sudo apt-get install libxml2-utils
+sudo apt-get install xsltproc
+sudo apt-get install devscripts
+
+sudo apt-get install debhelper
+sudo apt-get install dh-systemd
+sudo apt-get install quilt 
+sudo apt-get install libpcre3-dev
+
+make all
+
+# https://ubuntu.com/tutorials/install-and-configure-nginx#1-overview
+
+--- Install Nginx on Ubuntu
+
+sudo apt update
+sudo apt install nginx
+
+sudo systemctl enable nginx
+
+sudo systemctl status nginx
+
+--- Allow Firewall
+
+sudo ufw allow 80/tcp
+sudo ufw reload
+
+--- Start Ngnix
+
+sudo service nginx start
+sudo systemctl start nginx.service
+sudo nginx
+
+--- Stop Ngnix
+
+sudo service nginx stop
+sudo systemctl stop nginx.service
+sudo nginx -s stop
+sudo nginx -s quit
+
+--- Restart Ngnix
+
+sudo service nginx restart
+sudo systemctl restart nginx.service
+sudo nginx -s reload
+
+--- Static Pages
+
+/var/www/html/
+
+> Demo Page
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Hello, Nginx!</title>
+</head>
+<body>
+    <h1>Hello, Nginx!</h1>
+    <p>We have just configured our Nginx web server on Ubuntu Server!</p>
+</body>
+</html>
+
+--- Virtual Host
+
+~ sudo ln -s /etc/nginx/sites-available/tutorial /etc/nginx/sites-enabled/
+
+? readlink -f sites-enabled/tutorial
+
+/etc/nginx/sites-enabled/
+
+> Demo Host /etc/nginx/sites-enabled/tutorial
+
+server {
+       listen 81;
+       listen [::]:81;
+
+       server_name example.ubuntu.com;
+
+       root /var/www/tutorial;
+       index index.html;
+
+       location / {
+               try_files $uri $uri/ =404;
+       }
+}
+
+--- Nginx Service
+
+sudo service nginx restart
+
+## https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-debian-9-es
+
+
