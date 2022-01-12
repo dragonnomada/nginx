@@ -1,0 +1,23 @@
+# /facturas/123123123/xml
+# /facturas/123123123/pdf
+# /facturas/324234343/xml
+# /facturas/(?<id>)/(?<type>)
+
+# $request_uri = "/facturas/324234343/xml"
+# -> $uuid = "324234343"
+map $request_uri $uuid {
+  default "INVALID";
+  ~ /facturas/(\d+) $1;
+}
+
+# $request_uri = "/facturas/324234343/xml"
+# $type = "xml"
+map $request_uri $type {
+  default "pdf";
+  ~ /facturas/(\d+)/(xml|pdf) $2;
+}
+
+...
+rewrite ... /factura.php?id=$uuid&type=$type
+root /home/ubuntu/facturas/$uuid/$type
+<p>Factura: <!--#echo var="uuid"--></p>

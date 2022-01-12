@@ -1,0 +1,1 @@
+<h1>Product Info <!--#echo var="id"--></h1>

@@ -1,0 +1,18 @@
+# /mascota/<nombre>/status
+
+map ...
+
+server {
+
+map $request_uri $name {
+  default "UNKNOWN";
+  ~ /mascota/(\w+)/status $1;
+}
+
+}
+
+/home/ubuntu/certificates/<nombre>.txt
+
+mascota.shtml
+
+<!--#include file="/home/ubuntu/certificates/$name.txt"-->

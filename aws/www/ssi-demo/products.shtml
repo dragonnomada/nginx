@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Información del producto</title>
+</head>
+
+<body>
+  <h1>Información del producto: <!--#echo var="id"--></h1>
+
+  <!--#include virtual="/products.php?id=$id"-->
+
+  <!--#include file="footer.shtml"-->
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+1. Crear un servidor que provea archivos .shtml
+
+* Activar el módulo ssi para todas las rutas .shtml
+--- xxxx.conf
+server {
+  ...
+  # root ?
+  location ~ \.shtml {
+    ssi on;
+    # root ?
+  }
+}
+
+2. Crear tres archivos: home.shtml, header.shtml, footer.shtml, home_body.shtml
+
+* El home.shtml debe incluir a los tres restantes
+
+3. Definir una variable en el servidor llamada: set $id 123;
+
+--- xxxx.conf
+...
+location \.shtml {
+  set $id 123;
+  ssi on;
+}
+...
+
+4. Mostrar la varialbe $id en home_body.shtml mediante #echo var="id"
+--- home_body.shtml
+...
+<p>ID: <!--#echo var="id"--></p>
+...
+
+5. Definir la variable title en home.shtml mediante <!--#set var="title" value="Mi página"-->
+
+6. Mostrar la variable title en header.shtml y footer.shtml

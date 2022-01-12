@@ -1,0 +1,22 @@
+<h1>Acerca de ...</h1>
+
+<p style="color:blue">URI: <!--#echo var="uri"--></p>
+<p style="color:blue">Host: <!--#echo var="http_host"--></p>
+<p style="color:blue">Accept: <!--#echo var="http_accept"--></p>
+<p style="color:blue">User Agent: <!--#echo var="http_user_agent"--></p>
+<p style="color:blue">Query: <!--#echo var="args"--></p>
+<p style="color:blue">Foo: <!--#echo var="arg_foo" default="zip"--></p>
+
+<button onclick="show()">pulsame</button>
+
+<!--#set var="title" value="Mi tienda"-->
+<!--#include file="footer.shtml"-->
+
+<script>
+const apiKey = "<!--#echo var="apiKey"-->"
+
+function show() {
+  alert(apiKey)
+}
+</script>
+

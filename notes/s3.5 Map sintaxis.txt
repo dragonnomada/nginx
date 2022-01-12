@@ -1,0 +1,19 @@
+map <src var> <trg var> {
+  <expr1> <value1>;
+  <expr2> <value2>;
+  ...
+  default <def value>;
+}
+
+set $sabor = 'CHOCOLATE'; # FRESA, MANGO, ...
+
+map $sabor $sabor_codigo {
+  CHOCOLATE 1;
+  FRESA 2;
+  MANGO 3;
+  ...
+  default 0;
+}
+
+...
+root /home/ubuntu/www/helados/$sabor_codigo/...;

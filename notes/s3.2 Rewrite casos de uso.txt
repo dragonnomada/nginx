@@ -1,0 +1,23 @@
+# http://IP/video/1234142342.mp4
+# http://IP/video/1234142342.flv
+# http://IP/video/5456464242.flv
+# http://IP/video/6788543545.mp4
+
+location ~ ^/video/(\d+)\.(mp4|flv) {
+  # $1 - 1234142342
+  # $2 - mp4
+  rewrite ^/video/(\d+)\.(mp4|flv) /video.php?id=$1&ext=$2 last;
+}
+
+# cli-789-dev
+# cli-(\d+)-(dev|prod|qa)
+
+
+
+
+
+
+
+
+# alias /home/ubuntu/videos/$2/$1.$2$3$suffix;
+# alias "/home/ubuntu/videos/$2/$1.{$2}0"; # .mp40

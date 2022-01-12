@@ -1,0 +1,42 @@
+<h1>Products</h1>
+
+<!--#set var="title" value="PRODUCTS"-->
+
+<!--#include file="/header.shtml"-->
+
+<p><!--#echo var="id"--></p>
+<p><!--#echo var="op"--></p>
+
+<p><!--#echo var="http_host"--></p>
+<p><!--#echo var="http_user_agent"--></p>
+<p><!--#echo var="http_referer"--></p>
+<p><!--#echo var="http_via"--></p>
+<p><!--#echo var="http_x_forwarded_for"--></p>
+<p><!--#echo var="http_cookie"--></p>
+<p><!--#echo var="http_accept"--></p>
+
+<p><!--#echo var="sent_http_content_type"--></p>
+<p><!--#echo var="sent_http_content_length"--></p>
+<p><!--#echo var="sent_http_location"--></p>
+<p><!--#echo var="sent_http_last_modified"--></p>
+<p><!--#echo var="sent_http_connection"--></p>
+<p><!--#echo var="sent_http_keep_alive"--></p>
+<p><!--#echo var="sent_http_transfer_encoding"--></p>
+<p><!--#echo var="sent_http_cache_control"--></p>
+<p><!--#echo var="sent_http_server"--></p>
+
+<p><!--#echo var="args"--></p>
+<p><!--#echo var="arg_foo"--></p>
+<p><!--#echo var="hostname"--></p>
+
+<button>touch</button>
+
+<!--#include file="/$op.shtml"-->
+
+<script>
+const id = <!--#echo var="id" -->
+
+document.querySelector("button").addEventListener("click", function (event) {
+  alert(`Product ID: ${id}`)
+})
+</script>

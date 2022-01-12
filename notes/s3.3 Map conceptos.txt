@@ -1,0 +1,29 @@
+# /products/123 -> 123
+# $request_uri = "/products/123"
+# $id = "123"
+map $request_uri $id {
+  ...
+}
+
+# /video/554433.mp4 -> 554433
+map $request_uri $vid {
+  ...
+}
+
+# /video/554433.mp4 -> mp4
+map $request_uri $vtype {
+  ...
+}
+
+# /video/554433.mp4 -> 1 | 0
+map $request_uri $is_mp4 {
+  ...
+}
+
+# /products/status/active   -> 1
+# /products/status/inactive -> 0
+# /products/status/error    -> 2
+map $request_uri $status_code {
+  ...
+}
+

@@ -1,0 +1,4 @@
+<p><!--#echo var="status"--></p>
+<p><!--#echo var="request_uri"--></p>
+<p><!--#echo var="document_uri"--></p>
+<p><!--#echo var="document_root"--></p>

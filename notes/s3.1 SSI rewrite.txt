@@ -1,0 +1,21 @@
+# http://IP/products/123
+
+-> products.shtml (Información del producto 123)
+
+? products.php?id=123
+? http://backend/api/products?id=123
+
+# Caso 1
+location ~ /products/(\d+) {
+  set $id $1;
+  rewrite /products/\d+ /products.shtml last;
+} 
+# --- $id
+
+# Caso 2 - PCRE (?<name>...)
+location ~ /products/(?<id>\d+) {
+  rewrite /products/\d+ /products.shtml last;
+}
+# --- $id
+
+
