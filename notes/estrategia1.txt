@@ -1,0 +1,26 @@
+server {
+  listen 3000;
+
+  location ...
+
+}
+
+--
+
+server {
+  listen 4000;
+
+  location ...
+
+}
+
+--
+
+upstream prod {
+  ... 4000
+  ... 3000
+}
+
+server {
+  ... proxy_pass http://prod  
+}

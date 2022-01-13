@@ -1,0 +1,9 @@
+location /reboot.php {
+  internal
+}
+
+location /reboot {
+  allow 123.456.789.111;
+  deny all;
+  rewrite /reboot /reboot.php last;
+}
