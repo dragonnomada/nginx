@@ -1,0 +1,19 @@
+map $request_uri $eid {
+  default "-";
+  ~/certificado/(?<fid>\d+) $1;
+}
+
+server {
+  listen 3031;
+
+  location ~ /certificado/(?<aid>\d+) {
+    set $bid $1;
+    rewrite /certificado/(?<cid>\d+) /cert.shtml?did=$1;
+  }
+
+  location ~ \.shtml$ {
+    internal;
+    root /home/ubuntu/www/clase4;
+  }
+
+}

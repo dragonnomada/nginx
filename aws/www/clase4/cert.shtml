@@ -1,0 +1,5 @@
+<p>Certificado <strong><!--#echo var="id"--></strong></p>
+
+<p><!--#echo var="document_root"--></p>
+
+<!--#include file="certs/$id.txt"-->
