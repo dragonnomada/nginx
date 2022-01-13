@@ -1,0 +1,52 @@
+# Comunicación entre Nginx y PHP
+
+-> fastcgi_pass unix:
+
+1. Crear el archivo de configuración general para las rutas .php
+
+--- /home/ubuntu/conf/php-location.conf
+
+location ~ \.php {
+  internal;
+  fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+  ...
+}
+
+2. Crear el archivo de configuración de un servidor que integre php
+
+--- /home/ubuntu/sites/php-server.conf
+
+server {
+  listen 4040;
+  
+  include /home/ubuntu/conf/php-location.conf;
+
+  root /home/ubuntu/php;
+
+  ... location  
+
+}
+
+3. Crear una ruta que capture productos y operaciones /products/<id>/<op>
+
+Ejemplo: /products/123/info
+
+location ~ /products/(?<id>\d+)/(?<op>\w+) {
+  rewrite .* /products.php?id=$id&op=$op last;
+}
+
+4. Crear el archivo products.php que imprima un html con las variables pasadas
+
+<?php
+$id = $_GET["id"];
+$op = $_GET["op"];
+?>
+<h1>Producto <?= $id ?></h1>
+
+<p>Operación: <?= $op ?></p>
+
+
+
+
+
+
