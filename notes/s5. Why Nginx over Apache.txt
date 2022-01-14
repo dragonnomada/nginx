@@ -1,0 +1,47 @@
+Apache:
++ Librerías Dinámicas
+~ <Directory>
+--> PHP | Estáticos | ...
+
+Nginx:
++ Rendimiento %150+
+~ Load Balancing
+--> Redistribución | Puertas | Relecolección de Dominos | Ruteo | ...
+
+80 -> ejemplo.com | miempresa.com | dev.example.com
+
+upstream apache {
+  server localhost:8080;
+}
+
+server {
+  listen 80;
+  server_name ejemplo.com;
+  location / {
+    proxy_pass http://apache;
+  }
+}
+
+upstream tomcat {
+  server localhost:5000;
+}
+
+server {
+  listen 80;
+  server_name miempresa.com;
+  location / {
+    proxy_pass http://tomcat;
+  }
+}
+
+upstream server {
+  server localhost:3000;
+}
+
+server {
+  listen 80;
+  server_name dev.ejemplo.com;
+  location / {
+    proxy_pass http://server;
+  }
+}
