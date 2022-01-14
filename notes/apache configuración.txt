@@ -1,0 +1,39 @@
+sudo apt install apache2
+
+sudo nano /etc/apache2/ports.conf
+
+sudo systemctl restart apache2.service
+
+sudo systemctl status apache2.service
+
+sudo nano /etc/apache2/apache2.conf
+
+	User ubuntu
+	Group ubuntu
+
+	...
+	
+	IncludeOptional /home/ubuntu/sites-apache/*.conf
+
+sudo nano /etc/apache2/sites-enabled/000-default.conf
+
+apachectl configtest
+
+sudo apt install php-fpm
+
+sudo apt install libapache2-mod-fcgid
+
+a2enconf php7.4-fpm
+
+a2enmod fcgid
+a2enmod proxy 
+a2enmod proxy_fcgi
+a2enmod setenvif
+
+cat /etc/apache2/conf-enabled/php7.4-fpm.conf
+
+sudo apachectl -M
+
+cat /var/log/apache2/error.log
+
+

@@ -1,0 +1,28 @@
+Caso 1 - Backends
+
+upstream bapache {
+  
+  server primary.miempresa.com;
+  server secondary.miempresa.com backup;
+
+  server old.miempresa.com down;
+
+}
+
+1. Bajamos el servidor secundario para actualizarlo
+2. Encendemos el servidor secundario
+
+3. Bajamos el servidor primario para actualizarlo (entra al rescate el secundario ya está actulizado)
+4. Encendemos el servidor primary
+
+Caso 2 - Bases de Datos
+
+upstream bmysql {
+  
+  server 156.789.354.567:3306;
+  server 189.235.234.123:3307 backup;
+
+}
+
+TCP / UDP
+

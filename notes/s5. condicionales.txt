@@ -1,0 +1,13 @@
+if (<expr>) { ... }
+
+if ($request_uri ~ /videos) { ... }
+
+if ($http_secret = 123) {
+  rewrite /info.shtml
+}
+
+if ($http_secret = 456) {
+  rewrite /error.shtml
+}
+
+return 403;

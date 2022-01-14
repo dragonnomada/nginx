@@ -1,0 +1,27 @@
+server 9000 -> backend (prod-1)
+server 9001 -> backend (prod-2)
+server 9002 -> backend (prod-3)
+server 9100 -> backend (readonly)
+
+Equilibro de Carga | Balanceo de Carga | Load Balancing
+
+upstream backend {
+  # Operativos | Funcionalidad Completa
+  server localhost:9000 weight=3; # 6 -> 3
+  server localhost:9001 weight=2; # 6 -> 2
+  server localhost:9002;          # 6 -> 1
+  # Específicos | Funcionalidad Completa/Parcial
+  server localhost:9200 fail timeout=5s;
+  # Rescate    | Funcionalidad Parcial
+  server localhost:9100 backup;
+  server localhost:9101 backup;
+}
+
+server {
+  listen 80;
+
+  location /backend {
+    proxy_pass http://backend/;
+  }
+
+}

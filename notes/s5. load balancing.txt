@@ -1,0 +1,25 @@
+10K
+
+10k -> server BACKEND  -> AWS 123.456.789.123
+
+5k -> server BACKEND:1 -> AWS 123.456.789.123 weight=5;
+3k -> server BACKEND:2 -> AWS 123.456.789.124 weight=3;
+2k -> server BACKEND:3 -> AWS 123.456.789.125 weight=2;
+
+server BACKEND:4 -> GOO 123.456.789.125 backup;
+
+least_conn;
+
+least_time header | last_byte [inflight];
+
+queue number [timeout=time];
+
+random [two [method]];
+
+random two least_time header;
+
+
+
+
+
+

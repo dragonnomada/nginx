@@ -1,0 +1,98 @@
+APACHE / NGINX
+
+Apache:
+
+<FilesMatch "\.shtml$">
+  Require all denied
+</FilesMatch>
+
+Nginx:
+
+server {
+
+  ...
+
+  root /home/ubuntu/www/server;
+
+  location ~ \.shtml$ {
+    internal;
+    deny all;
+  }
+
+}
+
+Apache:
+
+LogFormat "%v:%p %h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" access_dev
+
+ErrorLog ${APACHE_LOG_DIR}/error.log error_dev
+CustomLog ${APACHE_LOG_DIR}/access.log access_dev	
+
+Nginx:
+
+log_format access_dev "
+[$date] $request_uri $http_user_agent $http_x_auth $vid $vtype
+";
+
+access_log <path> access_dev;
+error_log  <path> error_dev;
+
+Apache: 
+
+IncludeOptional sites-enabled/*.conf
+
+Nginx:
+
+include sites-enabled/*.conf;
+
+Apache:
+
+Listen 80
+<VirtualHost localhost:80>
+...
+</VirtualHost>
+
+Nginx:
+
+server {
+  listen 80;
+
+  ...
+}
+
+Apache:
+
+<IfModule my_module>
+  ...
+</IfModule>
+
+Nginx:
+
+if ($__ ~ ...) {
+  ...
+}
+
+Apache: Comprobar que la configuración sea correcta
+
+sudo apache2ctl configtest
+
+Nginx: Comprobar que la configuración sea correcta
+
+sudo /nginx/sbin/nginx -t
+
+Apache:
+
+<VirtualHost *:8080>
+
+DocumentRoot /var/www/html
+
+</VirtualHost>
+
+Nginx:
+
+server {
+  listen 8080;
+
+  root /var/www/html;
+}
+

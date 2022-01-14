@@ -1,0 +1,75 @@
+/videos/123456.mp4
+
+-> 
+
+Tokens:
+
+\d -> [0-9]
+
+123 \d
+
+[1]23
+
+Multiplicadores:
+
+* : 0+
++ : 1+
+? : 0-1
+{a,b} : a-b
+
+Patrones Regulares -> Cadenas Genéricas de Reconocimiento
+
+abbbcccca
+aabbccca
+
+a+b{2,}c*a
+
+aaaaaaaabccccccca
+a+[bc]
+
+/videos/123456.mp4
+
+/videos/\d+\.mp4
+
+/videos/a1234.mp4
+/videos/a
+
+/videos/15.mp4
+/videos/\d\d\.mp4
+
+location ~ /videos/\d+\.mp4 {
+  # return 403;
+  # rewrite .* /video.php?...;
+  # root /home/...;
+}
+
+location ~ /videos/u\d+\.mp4 {
+  
+}
+
+location ~ /videos/p\d+\.mp4 {
+  allow ...;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,23 @@
+server 4100 /products
+server 4101 /clients
+server 4102 /sells
+server 4103 /invoice
+
+server 80 miempresa.com
+
+location /products/ {
+  proxy_pass http://localhost:4100/;
+}
+
+location /clients/ {
+  proxy_pass http://localhost:4101/;
+}
+
+location /sells/ {
+  proxy_pass http://localhost:4102/;
+}
+
+location /invoice/ {
+  proxy_pass http://localhost:4103/;
+}
+

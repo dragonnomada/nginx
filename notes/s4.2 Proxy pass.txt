@@ -1,0 +1,9 @@
+server {
+
+  listen xxxx;
+
+  location /site1 {
+    proxy_pass http://uri/;
+  }  
+
+}
