@@ -1,0 +1,51 @@
+--- Install Docker
+
+sudo apt-get update
+
+sudo apt-get install ca-certificates curl gnupg lsb-release
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+
+sudo docker run hello-world
+
+--- Make Nginx Image Docker (nginx-test)
+
+mkdir -p ~/containers/nginx-test
+
+> ~/containers/nginx-test/Dockerfile
+
+FROM nginx
+COPY www /usr/share/nginx/html
+...
+# install php-fpm
+# config php-fpm (location)
+# intall & config wordpress, mysql
+CMD ["apt-get", "install", "mysql-server"]
+CMD ["apt-get", "install", "php-fpm"]
+COPY conf/nginx.conf /usr/share/nginx/conf/nginx.conf
+
+mkdir -p ~/containers/nginx-test/www
+
+echo "<h1>Nginx Test Docker (nginx-test)</h1>" > ~/containers/nginx-test/www/index.html
+
+--- Build Nginx Image Docker (nginx-test)
+
+sudo docker build -t tag-nginx .
+
+--- Run Nginx Image Docker (nginx-test)
+
+sudo docker run --name nginx-test -d -p 7400:80 tag-nginx
+
+-- Update Files Nginx Image Docker (nginx-test)
+
+sudo docker container cp my-conf nginx-custom:/etc/nginx/conf.d
+
+sudo docker container exec nginx-custom nginx -s reload
+
+

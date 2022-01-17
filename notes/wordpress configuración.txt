@@ -6,6 +6,8 @@ mv latest.tar.gz wordpress.tar.gz
 
 tar zxf wordpress.tar.gz
 
+mv worpress/ php/
+
 sudo chown -R ubuntu wordpress
 sudo chgrp -R ubuntu wordpress
 sudo chmod -R 777 wordpress
@@ -23,7 +25,7 @@ server {
   root /home/ubuntu/wordpress;
 
   location / {
-    try_files $uri $uri/ /index.php?q=$uri&args;
+    try_files $uri $uri/index.php?q=$uri&args;
   }
 
 }
