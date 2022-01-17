@@ -12,9 +12,15 @@ sudo apt install php-mysql
 
 sudo systemctl restart php7.4-fpm
 
-sudo systemctl restart apache2
+--- Activate Logs on Php FPM
 
-cat /var/log/apache2/error.log
+> sudo nano /etc/php/7.4/fpm/pool.d/www.conf
+
+catch_workers_output = yes
+
+php_flag[display_errors] = on
+php_admin_value[error_log] = /var/log/fpm-php.www.log
+php_admin_flag[log_errors] = on
 
 --- Create Test File
 
@@ -37,6 +43,8 @@ $mysqli->close();
 ?>
 
 --- Create User
+
+sudo mysql
 
 mysql> CREATE USER 'dummy'@'localhost' IDENTIFIED BY 'password';
 
